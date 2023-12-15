@@ -1,0 +1,95 @@
+If:
+  PathMatch: [^(.*\/)?src/.*, ^(.*\/)?test/.*]
+  PathExclude:
+    [/usr/include/.*, /usr/local/include/.*, ^(.*\/)?MSVC/.*, ^(.*\/)?vcpkg/.*]
+
+CompileFlags:
+  Compiler: cl
+  Add: [
+      -std=c++20,
+      -Wno-missing-prototypes, # 当函数在使用前没有函数原型时
+      -Wextra,
+      # -pedantic,
+    ]
+  Remove: [
+      # -Wdocumentation, # 启用有关文档注释的警告
+      # -Wc++98-compat,
+      # -Wc++98-compat-pedantic,
+      -Wc++17-extensions,
+    ]
+
+Index:
+  Background: Build
+
+Diagnostics:
+  UnusedIncludes: Strict
+  ClangTidy:
+    Add:
+      [
+        bugprone-*,
+        cert-*,
+        clang-analyzer-*,
+        cppcoreguidelines-*,
+        misc-*,
+        modernize-*,
+        performance-*,
+        portability-*,
+        readability-*,
+      ]
+    Remove: [
+        bugprone-easily-swappable-parameters, # 警告参数可能易混淆
+        cppcoreguidelines-avoid-magic-numbers,
+        cppcoreguidelines-pro-type-reinterpret-cast,
+        misc-no-recursion,
+        misc-unused-using-decls, # 警告未使用的 using 声明
+        misc-non-private-member-variables-in-classes, # 提醒将类的成员变量声明为私有
+        readability-identifier-length,
+        readability-magic-numbers,
+      ]
+
+    # 参考 https://github.com/googleapis/google-cloud-cpp/blob/main/.clang-tidy
+    # Casing types: lower_case, UPPER_CASE, camelBack, CamelCase,
+    # camel_Snake_Back, Camel_Snake_Case, aNy_CasE, Leading_upper_snake_case
+    CheckOptions:
+      readability-identifier-naming.NamespaceCase: lower_case
+      readability-identifier-naming.ClassCase: CamelCase
+      readability-identifier-naming.StructCase: CamelCase
+      readability-identifier-naming.TemplateParameterCase: CamelCase
+
+      readability-identifier-naming.StaticVariableCase: CamelCase
+      readability-identifier-naming.StaticVariablePrefix: s_
+      readability-identifier-naming.StaticConstantCase: CamelCase
+      readability-identifier-naming.StaticConstantCasePrefix: sc_
+
+      readability-identifier-naming.ConstexprVariableCase: UPPER_CASE
+      # readability-identifier-naming.ConstexprVariablePrefix       : c
+      # readability-identifier-naming.GlobalConstantCase: UPPER_CASE
+      # readability-identifier-naming.GlobalConstantPrefix          : c
+      # readability-identifier-naming.GlobalVariableCase: UPPER_CASE
+      # readability-identifier-naming.GlobalVariablePrefix          : g
+
+      readability-identifier-naming.FunctionCase: aNy_CasE
+      # readability-identifier-naming.LocalVariableCase: camelBack
+
+      readability-identifier-naming.PrivateMemberSuffix: _
+      readability-identifier-naming.ProtectedMemberSuffix: _
+      # readability-identifier-naming.ClassConstantCase: camelBack
+
+      readability-identifier-naming.EnumCase: CamelCase
+      readability-identifier-naming.EnumPrefix: E_
+      readability-identifier-naming.EnumConstantCase: UPPER_CASE
+      # readability-identifier-naming.EnumConstantPrefix            : c
+      readability-identifier-naming.ScopedEnumConstantCase: UPPER_CASE
+
+Completion:
+  AllScopes: true
+
+InlayHints:
+  Enabled: true
+  ParameterNames: true
+  DeducedTypes: true
+  Designators: true
+  # BlockEnd: true
+
+Hover:
+  ShowAKA: true

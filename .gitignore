@@ -1,0 +1,11 @@
+# folder
+.cache/
+.xmake/
+build/
+vsxmake2022/
+EBook/
+out/
+
+# file
+compile_commands.json
+!Assignment.pdf

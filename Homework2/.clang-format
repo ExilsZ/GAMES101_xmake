@@ -1,0 +1,63 @@
+BasedOnStyle: LLVM
+
+UseTab: Never
+IndentWidth: 4
+
+# 对齐连续宏定义
+AlignConsecutiveMacros: AcrossEmptyLinesAndComments
+
+# 对齐连续赋值
+AlignConsecutiveAssignments:
+  Enabled: true
+  AcrossEmptyLines: false
+  AcrossComments: false
+  AlignCompound: true
+  PadOperators: true
+
+# 连续声明时，对齐所有声明的变量名
+AlignConsecutiveDeclarations: Consecutive
+
+# 对齐数组列
+AlignArrayOfStructures: Right
+
+# 尾随的注释对齐
+AlignTrailingComments: true
+
+# 指针对齐
+PointerAlignment: Left
+
+# 引用对齐
+ReferenceAlignment: Left
+
+# 允许短的块放在同一行(Always 总是将短块合并成一行)
+AllowShortBlocksOnASingleLine: Always
+
+# 允许短的 if 语句保持在同一行
+AllowShortIfStatementsOnASingleLine: AllIfsAndElse
+
+# 允许短的函数放在同一行
+AllowShortFunctionsOnASingleLine: All
+
+# 允许短 case 标签放在同一行
+AllowShortCaseLabelsOnASingleLine: true
+
+# 允许短的循环保持在同一行
+AllowShortLoopsOnASingleLine: true
+
+# 在大括号前换行
+BreakBeforeBraces: Attach
+
+# 每行字符的限制
+ColumnLimit: 100
+
+# 缩进预处理指令 None、BeforeHash、AfterHash
+IndentPPDirectives: AfterHash
+PPIndentWidth: 2
+
+IndentCaseLabels: true
+
+# 将多个 namespace 合并为一行
+CompactNamespaces: true
+
+# 命名空间的缩进: None, Inner(缩进嵌套的命名空间中的内容), All
+NamespaceIndentation: All

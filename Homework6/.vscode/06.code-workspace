@@ -1,0 +1,15 @@
+{
+  "folders": [
+    {
+      "path": ".."
+    },
+  ],
+  "settings": {
+    "files.defaultLanguage": "c++",
+    "workbench.colorCustomizations": {
+      "activityBar.background": "#652b1c",
+      "titleBar.activeBackground": "#652b1c",
+      "titleBar.activeForeground": "#f0f0f0"
+    },
+  }
+}
